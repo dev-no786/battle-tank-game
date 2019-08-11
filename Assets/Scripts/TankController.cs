@@ -11,6 +11,7 @@ public class TankController
 		tankView = GameObject.Instantiate<TankView>(prefab);
 
         //X location where new tank is spawned
+        Debug.Log("Tank type -" + prefab.tankType);
         tankView.SpawnTankHere(4);
 	}
 	

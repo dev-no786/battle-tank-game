@@ -5,7 +5,8 @@ using UnityEngine;
 public class TankView : MonoBehaviour {
 
     public TankType tankType;
-	void Start () {
+	private void Start ()
+    {
 		
 	}
 	

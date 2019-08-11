@@ -5,6 +5,12 @@ using UnityEngine;
 public class TankModel 
 {
 
+    public TankModel(TankScriptableObjects tankScriptableObject)
+    {
+        tankType = tankScriptableObject.TankType;
+        Speed = tankScriptableObject.Speed;
+        Health = tankScriptableObject.Health;
+    }
 	public TankModel(TankType type,float speed, float health, int spawnspot)
 	{
         tankType = type;
