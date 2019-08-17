@@ -5,24 +5,23 @@ using UnityEngine;
 public class TankView : MonoBehaviour {
 
     public TankType tankType;
-	private void Start ()
+	private TankController tankController;
+    public void Init(TankController c)
     {
-		
-	}
-	
+        this.tankController = c;
+    }
 	// Update is called once per frame
-	void Update () {
-		
+	void Update () 
+    {
+        Fire();
 	}
 
     void FixedUpdate()
     {
-
         GetInput();
-
     }
 
-    void GetInput()
+    private void GetInput()
     {
         if (Input.GetKey(KeyCode.D))
         {
@@ -42,6 +41,13 @@ public class TankView : MonoBehaviour {
         }
     }
 
+    private void Fire()
+    {
+        if (Input.GetKey(KeyCode.F))
+        {
+            tankController.FireBullet();
+        }   
+    }
     public void SpawnTankHere(int x)
     {
         //Used extensions to insert (X value, 0 , 0)
