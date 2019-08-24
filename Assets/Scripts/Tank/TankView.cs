@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankView : MonoBehaviour {
+public class TankView : MonoBehaviour, IDamageable
+{
 
     public TankType tankType;
 	private TankController tankController;
-    public void Init(TankController c)
-    {
-        this.tankController = c;
-    }
 	// Update is called once per frame
+
+    public void TakeDamage(float damage)
+    {
+        tankController.ApplyDamage(damage);
+    }    
 	void Update () 
     {
         Fire();
@@ -19,6 +21,11 @@ public class TankView : MonoBehaviour {
     void FixedUpdate()
     {
         GetInput();
+    }
+
+    public void Init(TankController c)
+    {
+        this.tankController = c;
     }
 
     private void GetInput()
@@ -43,14 +50,13 @@ public class TankView : MonoBehaviour {
 
     private void Fire()
     {
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             tankController.FireBullet();
         }   
     }
-    public void SpawnTankHere(int x)
+    public void SetTankPos(float x)
     {
-        //Used extensions to insert (X value, 0 , 0)
-        transform.position.SetX(4);
+        transform.position = new Vector3 (x , 0, 0);
     }
 }

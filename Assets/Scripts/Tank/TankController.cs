@@ -12,18 +12,27 @@ public class TankController
 		tankView = GameObject.Instantiate<TankView>(prefab);
 
         //X location where new tank is spawned
-        Debug.Log("Tank type -" + tankView.tankType);
+        Debug.Log("Tank type -" + model.tankType);
 		tankView.Init(this);
-		tankView.SpawnTankHere(4);
+		//tankView.SetTankPos(4);
 	}
 	
 	public void FireBullet()
 	{	
+		Vector3 position = tankView.transform.position + new Vector3(0f , 1f , 1f);
 		bulletController = BulletService.Instance.SpawnBullet();
-		Vector3 position = tankView.transform.position + new Vector3(0f , 0f , 1f);
-		bulletController.bulletView.transform.Translate(position);
+		bulletController.SetBulletPostion(position);
 	}
 
+	public void ApplyDamage(float damage)
+	{
+		tankModel.Health -= damage;
+
+		if(tankModel.Health <= 0)
+		{
+			TankService.Instance.UpdateLives();
+		}
+	}
 	public TankModel tankModel { get; }
 	public TankView tankView { get; } 
 }

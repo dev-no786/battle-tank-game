@@ -20,7 +20,7 @@ public class TankModel
 	}
 
     public float Speed { get; }
-    public float Health { get; }
+    public float Health { get; set;}
     public int Spawnspot { get; }
     public TankType tankType { get; }
 }
