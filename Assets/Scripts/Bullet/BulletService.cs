@@ -7,16 +7,17 @@ public class BulletService : MonoSingletonGeneric<BulletService>
 
 	public BulletView bulletPrefab;
 	public BulletScriptableObjects[] bulletConfig;
-
+	private TankController tank;
 	// Update is called once per frame
 	void Update () {
 		
 	}
-	public BulletController SpawnBullet()
+	public BulletController GetBulletController(TankController tc)
 	{
 		BulletScriptableObjects bulletScriptableObject = bulletConfig[0];
 		BulletModel BulletModel = new BulletModel(bulletScriptableObject);
-		BulletController BulletController = new BulletController(BulletModel,bulletPrefab);
+		BulletController BulletController = new BulletController(BulletModel,bulletPrefab,tc);
 		return BulletController;  
 	} 
+	
 }

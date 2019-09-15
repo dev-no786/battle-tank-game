@@ -17,9 +17,9 @@ public class TankService : MonoSingletonGeneric<TankService>
     }
     private void Update()
     {
-
-        if (Input.GetKeyDown("r"))
-        {
+        if (Lives <= 0)
+        {   
+            Input.GetKeyDown("r");
             print("Tank Spawned");
             SpawnTank();
         }

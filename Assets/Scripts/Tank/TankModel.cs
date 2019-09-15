@@ -17,10 +17,13 @@ public class TankModel
         Speed = speed;
         Health = health;
         Spawnspot = spawnspot;
+
+        PlayerId = Random.Range(1, 10000);
 	}
 
     public float Speed { get; }
     public float Health { get; set;}
     public int Spawnspot { get; }
     public TankType tankType { get; }
+    public int PlayerId { get; }
 }
