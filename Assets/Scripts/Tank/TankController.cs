@@ -14,17 +14,29 @@ public class TankController
         //X location where new tank is spawned
         Debug.Log("Tank type -" + model.tankType);
 		tankView.Init(this);
+		bulletController = BulletService.Instance.GetBulletController(this);
 		//tankView.SetTankPos(4);
 	}
 	
-	public void FireBullet()
+	private void Start()
+	{
+		EventSystem.Instance.onBulletFire += FireBullet(tankModel.PlayerId);
+	}
+	public void FireBullet(int playerId)
 	{	
+		if(this.tankModel.PlayerId == playerId)
+		{
+			Debug.Log("You fired a bullet");
+		}
+		else
+		{
+			Debug.Log("Player "+playerId+" fired a bullet");
+		}
 		Vector3 position = tankView.transform.position + new Vector3(0f , 1f , 1f);
-		bulletController = BulletService.Instance.SpawnBullet();
 		bulletController.SetBulletPostion(position);
 	}
 
-	public void ApplyDamage(float damage)
+	public void ApplyDamage(float damage,int tankId)
 	{
 		tankModel.Health -= damage;
 
@@ -33,6 +45,8 @@ public class TankController
 			TankService.Instance.UpdateLives();
 		}
 	}
+
+
 	public TankModel tankModel { get; }
 	public TankView tankView { get; } 
 }

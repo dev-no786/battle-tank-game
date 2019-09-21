@@ -9,9 +9,9 @@ public class TankView : MonoBehaviour, IDamageable
 	private TankController tankController;
 	// Update is called once per frame
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage,int tankHitId)
     {
-        tankController.ApplyDamage(damage);
+        tankController.ApplyDamage(damage,tankHitId);
     }    
 	void Update () 
     {

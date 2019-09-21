@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class BulletController  
 {
-	private TankController c;
-	public BulletController (BulletModel Model, BulletView prefab)
+	private TankController tankController;
+	public BulletController (BulletModel Model, BulletView prefab,TankController c)
 	{
 		bulletModel = Model;
 		
 		bulletView = GameObject.Instantiate<BulletView>(prefab);
-		
+		this.tankController = c;
 	}
 
 	public void SetBulletPostion(Vector3 pos)
